@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meta Tag Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        h1 {
+            color: #444;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .output {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+    <h1>Meta Tag Generator</h1>
+    <p>Fill out the fields below to generate meta tags for your web page:</p>
+    
+    <label for="pageTitle">Page Title:</label>
+    <input type="text" id="pageTitle" placeholder="Enter your page title" maxlength="60">
+
+    <label for="pageDescription">Meta Description:</label>
+    <textarea id="pageDescription" placeholder="Enter a description (max 160 characters)" maxlength="160"></textarea>
+
+    <label for="pageKeywords">Keywords (comma-separated):</label>
+    <input type="text" id="pageKeywords" placeholder="e.g., keyword1, keyword2, keyword3">
+
+    <button onclick="generateMetaTags()">Generate Meta Tags</button>
+
+    <div id="output" class="output"></div>
+
+    <script>
+        function generateMetaTags() {
+            const title = document.getElementById('pageTitle').value.trim();
+            const description = document.getElementById('pageDescription').value.trim();
+            const keywords = document.getElementById('pageKeywords').value.trim();
+
+            let metaTags = '<h3>Generated Meta Tags:</h3>';
+            
+            if (title) {
+                metaTags += `<pre>&lt;title&gt;${title}&lt;/title&gt;</pre>\n`;
+                metaTags += `<pre>&lt;meta name="title" content="${title}"&gt;</pre>\n`;
+            }
+            if (description) {
+                metaTags += `<pre>&lt;meta name="description" content="${description}"&gt;</pre>\n`;
+            }
+            if (keywords) {
+                metaTags += `<pre>&lt;meta name="keywords" content="${keywords}"&gt;</pre>\n`;
+            }
+
+            if (!title && !description && !keywords) {
+                metaTags = '<p>Please fill out at least one field to generate meta tags.</p>';
+            }
+
+            document.getElementById('output').innerHTML = metaTags;
+        }
+    </script>
+</body>
+</html>
